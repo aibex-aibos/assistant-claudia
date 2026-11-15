@@ -28,12 +28,12 @@ Keine; ein Einstiegspunkt (S. 9). Hooks werden in `.claude/settings.json` des Pr
 
 Der Feedback loop braucht Schutz: Ein Agent, der Code repariert, darf die Prüfung nicht aufweichen (S. 32). In Claudia 0.1 gilt (Festlegung von Claudia):
 
-- **gesperrt:** Änderungen an **bestehenden** Dateien unter `tests/` (Write oder Edit auf eine Datei, die es schon gibt);
+- **gesperrt:** Änderungen an **bestehenden** Testdateien (Write oder Edit auf eine Datei, die es schon gibt). Wo die Tests liegen, nimmt Claudia aus dem Produkt (`tests/`, `test_*.py`, `*_test.go`, …) und schreibt es in das Skript und in den Plan;
 - **erlaubt:** neue Testdateien, damit der fehlschlagende Test vor einer Korrektur geschrieben werden kann.
 
 So kann ein Test, der vor der Korrektur da war, nicht umgeschrieben werden. Will der User selbst einen Test ändern, tut er das von Hand oder nimmt den Hook bewusst vorübergehend heraus (Commit `hooks: …`).
 
-Beispiel (eigenes, Python, ohne Abhängigkeiten):
+Beispiel (eigenes, Python, ohne Abhängigkeiten; für Tests unter `tests/`, bei anderer Ablage die Bedingung anpassen):
 
 `.claude/settings.json`:
 
@@ -74,10 +74,10 @@ Exit-Code 2 sperrt die Handlung, und die Meldung auf stderr geht als Begründung
 
 ## Ablauf
 
-1. Mit dem User klären, was ausnahmslos gelten muss (in 0.1 mindestens: bestehende Tests schützen).
-2. Plan zeigen: Datei, Matcher, Skript, was gesperrt und was erlaubt ist.
-3. Nach Ja anlegen und mit einem Versuch prüfen, der gesperrt werden muss.
-4. Commit `hooks: <produkt>`.
+1. Mit dem User klären, was ausnahmslos gelten muss (in 0.1 mindestens: bestehende Tests schützen), Frage für Frage im Auswahlwerkzeug.
+2. Plan zeigen: Datei, Matcher, Skript, was gesperrt und was erlaubt ist. **Vorab sagen:** Claude Code schützt `.claude/`; der User muss das Schreiben freigeben, wenn der Host fragt, oder die Dateien selbst anlegen. Dann das Ja im Auswahlwerkzeug.
+3. Nach Ja anlegen und prüfen, ohne den Hook in der eigenen Session auszulösen: das Skript mit einem JSON auf stdin für einen bestehenden Test (Exit 2), einen neuen Test und eine Code-Datei (Exit 0).
+4. Commit `hooks: <produkt>`, dann die nächste Frage im Auswahlwerkzeug.
 
 ## Governance und Messen
 

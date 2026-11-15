@@ -17,7 +17,7 @@ AIbex AIOS lädt einen Assistenten nur in einem Ordner mit `@/` (Spec 02, 03 von
 
 ## Ablauf
 
-1. **Plan zeigen:** Ordner, Befehle, Inhalt der `.gitignore`, und der Hinweis: Das Produkt hat in 0.1 **kein Remote**, und im Produkt wird kein `/aios-sync` vorgeschlagen.
+1. **Plan zeigen:** Ordner, Befehle, Inhalt der `.gitignore`, die Ausgabe von `aios --init "<pfad>" --accept-name --plan` (gibt es den Ordner noch nicht, nach dem Anlegen) und der Hinweis: Das Produkt hat in 0.1 **kein Remote**, und im Produkt wird kein `/aios-sync` vorgeschlagen. Dann das Ja im Auswahlwerkzeug („Ja, anlegen (Empfohlen)", „Ändern", eigene Antwort).
 2. **Nach Ja:**
    - Ordner anlegen, `git init -b main`.
    - `.gitignore` schreiben, mindestens:
@@ -28,10 +28,11 @@ AIbex AIOS lädt einen Assistenten nur in einem Ordner mit `@/` (Spec 02, 03 von
      /.agents/
      .DS_Store
      ```
+   - Steht die Sprache schon fest, ihre üblichen Einträge dazu (bei Python `__pycache__/`, `*.pyc`); sonst spätestens mit dem Commit `build:`.
    - Commit `setup: <produkt>`.
-3. **`aios --init "<pfad>" --accept-name`** ausführen. Rufe `aios` über den Weiterleiter auf: mit dem absoluten Pfad aus dem Block `<aios-kernel-skills>` deines Master-Kontexts, als einzelnen Befehl ohne `cd`, `;`, `&&`, `|` oder Umleitung. `--accept-name` behält den Namen des Produkts; er muss nicht der Namensregel von AIOS folgen. `aios --init` ergänzt die `.gitignore` und committet sie („AIOS: Projekt ergänzt"); nenne diesen Commit.
+3. **`aios --init "<pfad>" --accept-name --yes`** ausführen. Ohne `--yes` zeigt `aios` nur den Plan und endet mit Exit 1; beantworte eine Rückfrage von `aios` **nie** per Pipe (`echo Y |`). Rufe `aios` über den Weiterleiter auf: mit dem absoluten Pfad aus dem Block `<aios-kernel-skills>` deines Master-Kontexts, als einzelnen Befehl ohne `cd`, `;`, `&&`, `|` oder Umleitung. `--accept-name` behält den Namen des Produkts; er muss nicht der Namensregel von AIOS folgen. `aios --init` ergänzt die `.gitignore` und committet sie („AIOS: Projekt ergänzt"); nenne diesen Commit.
 4. **Prüfen:** `aios --context --assignment "<pfad>"` meldet `claudia`; `git -C "<pfad>" status` ist sauber; `git -C "<pfad>" ls-files @ .aios` ist leer.
-5. **Melden:** Die Arbeit am Produkt geht in einer **neuen Session im Produkt-Ordner** weiter. Dort schlägt Claudia den ersten Play vor (siehe `kreislauf.md`, *Folge in einem neuen Produkt*).
+5. **Melden:** Die Arbeit am Produkt geht in einer **neuen Session im Produkt-Ordner** weiter. Dort schlägt Claudia den ersten Play vor (siehe `kreislauf.md`, *Folge in einem neuen Produkt*). Der Schritt endet mit einer Frage im Auswahlwerkzeug, z. B. „Ich öffne eine neue Session im Produkt (Empfohlen)", „Noch etwas im Projekt erledigen".
 
 ## Bekannte Grenzen
 

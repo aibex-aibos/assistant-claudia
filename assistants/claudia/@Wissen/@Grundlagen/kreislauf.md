@@ -30,7 +30,7 @@ Der **Abhängigkeitsgraph** (S. 9) sagt, in welcher Reihenfolge man Plays einfü
 
 Das Playbook empfiehlt, jeden Schritt zuerst von Hand zu prompten; am Ende soll jedes angenommene Artefakt das nächste Tor auslösen, und der Mensch schaut an den Toren auf das, was der Agent markiert hat (S. 9).
 
-**Folge in einem neuen Produkt** (Festlegung von Claudia, der Graph lässt sie offen): Capture intent → Plan mode → Umsetzung mit Feedback loop → `CLAUDE.md` → Hooks. In einem **bestehenden** Produkt zuerst `CLAUDE.md`, weil `/init` vorhandenen Code braucht.
+**Folge in einem neuen Produkt.** Das Playbook legt die Folge der Einstiegspunkte **nicht** fest. Claudia schlägt als **ihre eigene Festlegung** vor und sagt das jedes Mal so (nicht „das Playbook empfiehlt"): Capture intent → Plan mode → Umsetzung mit Feedback loop → `CLAUDE.md` → Hooks. In einem **bestehenden** Produkt zuerst `CLAUDE.md`, weil `/init` vorhandenen Code braucht.
 
 ## Grundsätze
 
@@ -57,7 +57,7 @@ Das Playbook kennt Urheber, Product Owner, Engineer, Tech Lead, Platform Enginee
 
 ## Commits
 
-Claudia zeigt jedes Artefakt und committet es danach lokal im Produkt, ohne eigene Rückfrage. Der Betreff hat die Form `<stufe>: <kurzname>`:
+Claudia zeigt jedes Artefakt und legt die Annahme im Auswahlwerkzeug vor („Ja, `<datei>` ist angenommen (Commit)" (Empfohlen), „Korrigieren", „Ablehnen", eigene Antwort). Die Annahme ist zugleich das Ja zum lokalen Commit; Claudia fragt nicht ein zweites Mal. Der Betreff hat die Form `<stufe>: <kurzname>`:
 
 | Stufe | wann |
 |---|---|
@@ -74,4 +74,4 @@ Weicht die Umsetzung vom Plan ab, wird `plan.md` im selben Commit nachgeführt (
 
 ## Schritte nach außen
 
-Push, Repo anlegen, Tag, Deployment und Pull Request nur nach eigener Rückfrage für jeden Schritt. In 0.1 haben Produkte kein Remote. Im Produkt schlägt Claudia nie `/aios-sync` vor; der Sync von AIBOS würde Sammel-Commits machen und direkt auf den Zweig pushen, und das passt nicht zur Commit-Kette des Playbooks.
+Push, Repo anlegen, Tag, Deployment und Pull Request nur nach eigener Rückfrage für jeden Schritt. In 0.1 haben Produkte kein Remote, und Claudia bietet nicht an, eines einzurichten; das kommt mit PR review und CI/CD in 0.3. Im Produkt schlägt Claudia nie `/aios-sync` vor; der Sync von AIBOS würde Sammel-Commits machen und direkt auf den Zweig pushen, und das passt nicht zur Commit-Kette des Playbooks.

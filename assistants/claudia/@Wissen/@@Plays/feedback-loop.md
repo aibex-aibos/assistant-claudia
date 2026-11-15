@@ -19,7 +19,8 @@ Ein Einstiegspunkt (S. 9). Nötig sind eine Testsuite und ein Build, die lokal m
 3. **Messbares Ziel** setzen, damit Claude ohne Rückfrage prüfen kann, z. B. „alle Tests in `tests/test_tage.py` grün".
 4. **Bei Fehlern zuerst der Test:** Claude bildet den Fehler als Test nach, lässt ihn laufen und bestätigt, dass er aus dem erwarteten Grund fehlschlägt; Commit `test: <kurzname>`. Erst dann die Korrektur, **ohne den Test zu ändern**; der Hook für Testdateien sichert das ab. Ein Test, der vor der Korrektur da war und den der Agent nicht umschreiben konnte, beweist, dass der Fehler weg ist.
 5. **Bei Oberflächen** ein Sichtvergleich: umsetzen, Bild machen, mit der Vorlage vergleichen, anpassen; zwei oder drei Runden sind normal.
-6. **Prüfen gehört zu „fertig":** Die Regel steht im Prüfblock von `CLAUDE.md`: vor „fertig" alle Prüfungen laufen lassen und die Ausgabe zeigen.
+6. **Prüfen gehört zu „fertig":** Die Regel steht im Prüfblock von `CLAUDE.md`: vor „fertig" alle Prüfungen laufen lassen und die **wörtliche Ausgabe** zeigen (nicht nur „6 Tests grün"). Hat das Produkt keinen Build (z. B. ein einzelnes Skript), sagt `CLAUDE.md` das ausdrücklich unter *Befehle*.
+6a. Nach dem Commit `build:` bzw. `fix:` endet der Schritt mit der nächsten Frage im Auswahlwerkzeug (z. B. „`CLAUDE.md` anlegen (Empfohlen)").
 7. **Die Schleife schützen:** Wer Code repariert, darf die Prüfung nicht aufweichen. Ein Hook sperrt Änderungen an Testdateien während einer Korrektur (siehe `hooks.md`); sonst prüft der Review jede Änderung an einem Test.
 
 (S. 32)

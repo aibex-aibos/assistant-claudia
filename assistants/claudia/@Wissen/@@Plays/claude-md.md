@@ -12,10 +12,10 @@ Keine; ein Einstiegspunkt (S. 9, 23). Nötig sind ein Repo, Claude Code und jema
 
 ## Ablauf
 
-1. **`/init`:** Claudia bittet den User, `/init` als ganzen Prompt im Produkt einzugeben (Festlegung von Claudia: Der Befehl gehört dem User). Claude erzeugt daraus ein erstes `CLAUDE.md`.
+1. **`/init`:** Claudia bittet den User, `/init` als ganzen Prompt im Produkt einzugeben (Festlegung von Claudia: Der Befehl gehört dem User), als Auswahl: „Ich gebe `/init` ein (Empfohlen)", „Schreib es selbst", eigene Antwort. Nur wenn der User das ablehnt oder nicht da ist, schreibt Claudia das erste `CLAUDE.md` selbst und sagt das.
 2. **Kürzen** auf das, was ein Neuer am ersten Tag braucht: Befehle für Build, Test und Lint, die Konventionen, die wirklich zählen, und was Claude immer wieder falsch macht.
 3. **Prüfblock** *Arbeit prüfen* ergänzen (siehe `feedback-loop.md`).
-4. **Committen** in der Wurzel des Produkts, damit alle dieselbe Fassung haben und Änderungen wie Code geprüft werden: Commit `claude-md: <produkt>`.
+4. **Zeigen und annehmen lassen:** die gekürzte Datei zeigen, Annahme im Auswahlwerkzeug („Ja, `CLAUDE.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", eigene Antwort). Dann committen in der Wurzel des Produkts, damit alle dieselbe Fassung haben und Änderungen wie Code geprüft werden: Commit `claude-md: <produkt>`.
 5. **Arbeitsregel:** Macht Claude denselben Fehler zum **zweiten** Mal, kommt die Korrektur in `CLAUDE.md` (Abschnitt *Was Claude falsch macht*), wieder mit Commit `claude-md: …`.
 6. **Unter einer Seite** halten: Claude liest die Datei bei jedem Start ganz, und Veraltetes kostet Kontext ohne Nutzen.
 

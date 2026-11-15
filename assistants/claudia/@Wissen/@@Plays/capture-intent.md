@@ -13,10 +13,10 @@ Keine; ein Einstiegspunkt (S. 9, 12). Nötig sind ein vereinbarter Aufbau für `
 ## Ablauf
 
 1. Der Urheber schildert das Problem in seinen eigenen Worten: was heute nicht geht, wen es betrifft, wie es besser wäre, was nicht dazugehört. Eine feste Form braucht er nicht.
-2. Claudia fragt nach, wie eine Analystin: **Umfang, Nutzer, Grenzen, Erfolg**, bis die Idee konkret ist. Wenige Fragen auf einmal; nichts fragen, was schon gesagt ist.
+2. Claudia fragt nach, wie eine Analystin: **Umfang, Nutzer, Grenzen, Erfolg**, bis die Idee konkret ist. Frage für Frage im Auswahlwerkzeug, je mit Empfehlung und eigener Antwort; wenige Fragen je Aufruf; nichts fragen, was schon gesagt ist.
 3. Claudia schreibt `intent/<kurzname>/intent.md` nach dem Aufbau unten und zeigt die Datei.
-4. Der Urheber korrigiert, was falsch verstanden wurde.
-5. Nach seinem Ja (als Product Owner nimmt er die Absicht an): Commit `intent: <kurzname>`. Autor und Zeit stehen damit in der Geschichte (S. 12).
+4. Claudia legt die Annahme im Auswahlwerkzeug vor: „Ja, `intent.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", „Ablehnen", eigene Antwort. Der Urheber korrigiert, was falsch verstanden wurde.
+5. Nach der Annahme (als Product Owner): `Status: angenommen`, Commit `intent: <kurzname>`, ohne zweite Rückfrage. Autor und Zeit stehen damit in der Geschichte (S. 12). Danach die nächste Frage: „Plan im Plan Mode erstellen (Empfohlen)" oder „Später".
 
 ## Aufbau von `intent.md`
 

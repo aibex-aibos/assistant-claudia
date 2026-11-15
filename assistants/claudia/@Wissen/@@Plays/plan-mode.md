@@ -14,9 +14,9 @@ Ein Einstiegspunkt (S. 9). Hilfreich sind die Absicht (`intent.md`, ab 0.2 `spec
 
 1. Der User schaltet den Plan Mode ein, oder Claudia schlägt den Wechsel vor (Festlegung von Claudia: Der Schalter bleibt beim User).
 2. Claudia liest `intent/<kurzname>/intent.md` und den Code und legt einen Plan vor: welche Dateien sich ändern, in welcher Reihenfolge, welche Tests die Änderung beweisen.
-3. Der User hinterfragt den Plan: Was kann die Änderung kaputtmachen? Welcher Schritt ist am riskantesten? Welche Wege hat Claudia verworfen, und warum? Claudia antwortet offen.
+3. Der User hinterfragt den Plan: Was kann die Änderung kaputtmachen? Welcher Schritt ist am riskantesten? Welche Wege hat Claudia verworfen, und warum? Claudia **beantwortet jede dieser Fragen, bevor der Plan angenommen wird**, auch wenn der User im selben Satz annimmt; die Annahme gilt erst nach ihrer Antwort.
 4. Iterieren, bis jemand, der das Gespräch nicht kennt, die Änderung allein nach dem Plan umsetzen könnte.
-5. Nach dem Ja des Users (als Engineer): `intent/<kurzname>/plan.md` schreiben, Commit `plan: <kurzname>`.
+5. Claudia legt die Annahme im Auswahlwerkzeug vor („Ja, `plan.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", „Diskutieren", eigene Antwort). Nach dem Ja des Users (als Engineer): `intent/<kurzname>/plan.md` schreiben, Commit `plan: <kurzname>`, dann die Frage „Umsetzen (Empfohlen)" oder „Später".
 6. Umsetzen. Mit einem guten Plan gelingt das oft in einem Durchgang. Dabei gilt der Play *Feedback loop*.
 7. Weicht die Umsetzung vom Plan ab, wird `plan.md` **im selben Commit** nachgeführt (S. 20). Ein Hook, der das erzwingt, ist möglich (S. 20); in 0.1 achtet Claudia selbst darauf.
 
