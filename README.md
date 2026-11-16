@@ -1,18 +1,30 @@
 # assistant-claudia
 
-Assistentin *Claudia* von AIbex AIOS, Version 0.1.0. Sie begleitet ein Softwareprojekt durch das AI-native SDLC, genau so, wie es *The AI-Native SDLC Playbook* (Louis Claxton, Anthropic, 2026) beschreibt, umgesetzt mit Claude Code. Jede Antwort beginnt mit „🦸‍♀️ ".
+Assistentin *Claudia* von AIbex AIOS, Version 0.2.0. Sie begleitet ein Softwareprojekt durch das AI-native SDLC, genau so, wie es *The AI-Native SDLC Playbook* (Louis Claxton, Anthropic, 2026) beschreibt, umgesetzt mit Claude Code. Jede Antwort beginnt mit „🦸‍♀️ “.
 
-## Umfang von 0.1
+## Umfang von 0.2
 
-Die fünf Einstiegspunkte des Playbooks, also die Plays ohne Voraussetzung:
+Die Build-Stufe vollständig, lokal, für einen Einzelentwickler und Produkte ohne Remote. Neun Plays:
 
 - **Capture intent:** die Absicht als `intent/<kurzname>/intent.md` festhalten;
+- **Skills:** Vorgaben und Regeln des Produkts als Skills in `.claude/skills/`, mit Prüfung, dass sie auslösen;
+- **Requirements and design:** aus der Absicht ein `spec.md` mit Anforderungen, Entwurf und markierten Bedenken;
 - **Plan mode:** ein Plan als `plan.md`, bevor Code entsteht;
-- **Feedback loop:** je ein Befehl für Test und Build, Prüfung vor „fertig", erst der fehlschlagende Test;
+- **Parallele Sessions und Subagents:** Aufgaben in eigenen Worktrees, zusammengeführt nach Prüfung; Subagents wie ein `verifier` in `.claude/agents/`;
+- **Feedback loop:** je ein Befehl für Test und Build, Prüfung vor „fertig“, erst der fehlschlagende Test;
 - **`CLAUDE.md`:** mit `/init` anlegen, kürzen, nach wiederholten Fehlern ergänzen;
-- **Hooks:** Leitplanken in `.claude/settings.json`, z. B. Schutz bestehender Tests.
+- **Hooks:** Leitplanken in `.claude/settings.json`: Schutz bestehender Tests, Meldung, wenn Code ohne `plan.md` committet wird;
+- **Evals (lokal):** Aufgaben mit Prüfung in `evals/`, Läufer, Log und ein Tor, wenn die Quote fällt.
 
-Jede Stufe endet mit einem lokalen Commit im Produkt. Für einen Einzelentwickler, ohne Remote. Die übrigen Plays (Requirements & design, Skills, Subagents, Evals, PR review, CI/CD, Closing the loop, Claude Tag, Auto mode) folgen in späteren Versionen.
+Dazu drei Slash-Commands:
+
+| Befehl | Zweck |
+|---|---|
+| `/claudia-intent` | Absicht nach Vorlage festhalten |
+| `/claudia-spec` | aus einer angenommenen Absicht die Spec machen |
+| `/claudia-evals` | Evals lokal laufen lassen, neue Evals anlegen |
+
+Jede Stufe endet mit einem lokalen Commit im Produkt. PR review, Evals in CI, Freigabetore, CI/CD, Auto mode, Closing the loop und Claude Tag folgen in späteren Versionen (Ziel: das ganze Playbook mit 1.0).
 
 ## Holen
 
@@ -22,7 +34,7 @@ Jede Stufe endet mit einem lokalen Commit im Produkt. Für einen Einzelentwickle
 aios --fetch assistant-claudia
 ```
 
-Zuordnen mit `/aios-assistant claudia` im Projekt, unter dem die Produkte liegen sollen. Claudia wirkt ab dem nächsten Chat. Ein neues Produkt legt sie auf Wunsch in `product/<name>/` an (ein AIBOS-Paket in `@Package/<paket>/`); die Arbeit am Produkt läuft dann in einer Session in dessen Ordner.
+Zuordnen mit `/aios-assistant claudia` im Projekt, unter dem die Produkte liegen sollen. Claudia und ihre Slash-Commands wirken ab dem nächsten Chat. Ein neues Produkt legt sie auf Wunsch in `product/<name>/` an (ein AIBOS-Paket in `@Package/<paket>/`); die Arbeit am Produkt läuft dann in einer Session in dessen Ordner. Ein Produkt aus Claudia 0.1 stellt sie auf Wunsch um, damit Skills des Produkts committet werden können.
 
 ## Quelle
 
@@ -30,4 +42,4 @@ Das Wissen gibt das Playbook in eigenen Worten mit Seitenangaben wieder. Das Pla
 
 ## Lizenz
 
-Apache License 2.0 (`LICENSE`), Rechteinhaber AIbex KG (`NOTICE`). Die Marken „AIbex" und „AIbex AIOS" sind nicht mitlizenziert. „Claude" und „Anthropic" sind Marken von Anthropic; das Paket steht in keiner Verbindung zu Anthropic.
+Apache License 2.0 (`LICENSE`), Rechteinhaber AIbex KG (`NOTICE`). Die Marken „AIbex“ und „AIbex AIOS“ sind nicht mitlizenziert. „Claude“ und „Anthropic“ sind Marken von Anthropic; das Paket steht in keiner Verbindung zu Anthropic.
