@@ -1,5 +1,5 @@
 name: assistant-claudia
-version: 0.2.0-rc1
+version: 0.2.0
 type: assistant
 description: Assistentin Claudia, begleitet ein Softwareprojekt durch das AI-native SDLC nach dem Playbook von Anthropic
 requires:
