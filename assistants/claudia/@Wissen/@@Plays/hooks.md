@@ -101,11 +101,94 @@ Lesende Befehle (`cat`, `python3 -m unittest`, `git diff`) bleiben erlaubt; gesp
 
 Exit-Code 2 sperrt die Handlung, und die Meldung auf stderr geht als Begründung an Claude.
 
+## Der Hook für `plan.md`
+
+Das Playbook schlägt vor, `plan.md` und Umsetzung mit einem Hook synchron zu halten (S. 20); woran er eine Abweichung erkennt, sagt es nicht. Claudias Hook (Festlegung von Claudia) **meldet nach einem Commit** und **sperrt nichts**:
+
+- Er läuft als `PostToolUse` auf `Bash`, wenn der Befehl `git commit` enthält.
+- Er nimmt die jüngste `intent/<kurzname>/plan.md` im Git-Log, den neuen Commit eingeschlossen.
+- Ändert der Commit Code, also Dateien außerhalb von `intent/`, `evals/` und `.claude/` und außer `CLAUDE.md` und `.gitignore`, aber nicht diese `plan.md`, meldet er Claude: „Commit ändert Code von `<kurzname>` ohne `plan.md`; prüfen, ob der Plan nachgeführt werden muss.“
+- Merge-Commits (Zusammenführen paralleler Zweige) und einen Commit, den er schon geprüft hat, übergeht er; ohne `plan.md` im Produkt schweigt er.
+
+Claudia fragt nach der Meldung, ob der Plan nachgeführt werden muss, und holt das mit `plan: <kurzname>` nach.
+
+Eintrag in `.claude/settings.json` (neben dem Hook für Testdateien unter `PreToolUse`):
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/plan_melden.py\"" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+`.claude/hooks/plan_melden.py`:
+
+```python
+import json, os, re, subprocess, sys
+
+# Meldet nach einem Commit, wenn Code einer Änderung ohne ihre plan.md committet wurde.
+# Sperrt nichts (PostToolUse). Festlegung von Claudia nach Playbook S. 20.
+AUSSER = ("intent/", "evals/", ".claude/")       # kein Code der Änderung
+AUSSER_DATEIEN = ("CLAUDE.md", ".gitignore")
+
+daten = json.load(sys.stdin)
+befehl = (daten.get("tool_input") or {}).get("command", "")
+if daten.get("tool_name") != "Bash" or not re.search(r"\bgit\b(\s+-[Cc]\s+\S+)*\s+commit\b", befehl):
+    sys.exit(0)
+
+wurzel = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
+def git(*args):
+    r = subprocess.run(["git", "-C", wurzel, *args], capture_output=True, text=True)
+    return r.stdout.strip() if r.returncode == 0 else None
+
+kopf = git("rev-parse", "HEAD")
+if not kopf:
+    sys.exit(0)
+merker = os.path.join(git("rev-parse", "--git-dir") or ".git", "claudia-plan-hook")
+merker = merker if os.path.isabs(merker) else os.path.join(wurzel, merker)
+try:
+    if open(merker).read().strip() == kopf:      # dieser Commit ist schon geprüft (z. B. Commit fehlgeschlagen)
+        sys.exit(0)
+except OSError:
+    pass
+open(merker, "w").write(kopf)
+
+if len((git("rev-list", "--parents", "-n", "1", "HEAD") or "").split()) > 2:
+    sys.exit(0)                                  # Merge-Commit: wird beim Zusammenführen geprüft
+
+geaendert = (git("diff-tree", "--root", "--no-commit-id", "--name-only", "-r", "HEAD") or "").splitlines()
+plan = (git("log", "-1", "--format=", "--name-only", "--", "intent/*/plan.md") or "").splitlines()
+if not plan:
+    sys.exit(0)                                  # noch kein plan.md im Produkt
+plan = plan[0]
+code = [d for d in geaendert if not d.startswith(AUSSER) and d not in AUSSER_DATEIEN]
+if code and plan not in geaendert:
+    kurzname = plan.split("/")[1]
+    print(f"Commit ändert Code von `{kurzname}` ohne `plan.md` ({', '.join(code[:3])}); "
+          "prüfen, ob der Plan nachgeführt werden muss.", file=sys.stderr)
+    sys.exit(2)
+sys.exit(0)
+```
+
+Exit-Code 2 bei `PostToolUse` gibt die Meldung auf stderr an Claude weiter; der Commit ist da schon geschehen. Den zuletzt geprüften Commit merkt sich das Skript in `.git/claudia-plan-hook` (nicht committet).
+
+## Geprüft
+
+Beide Skripte sind vor dem Schreiben mit Fällen geprüft (Lehre aus Claudia 0.1): das Skript für Testdateien mit 20 Fällen (`Write`, `Edit`, `Read`; `rm`, `mv`, `sed -i`, `git rm`, `>`, `>>`, `>` ohne Leerzeichen, Ziel in Anführungszeichen, Pfad mit Leerzeichen, Kette mit `&&`; lesende Befehle, neue Tests, Code), das Skript für `plan.md` mit 19 Fällen (Code mit und ohne `plan.md`, nur `intent/`, `evals/`, `.claude/`, `CLAUDE.md`, `.gitignore`; ohne `plan.md`; `git -C`, Kette, andere Befehle und Werkzeuge; wiederholter Aufruf; Merge; zwei Änderungen; erster Commit). Prüft Claudia ein Skript im Produkt, ruft sie es mit **absolutem Pfad** auf: Ein relativer Pfad aus dem falschen Ordner lässt Python mit Exit-Code 2 enden und sieht aus wie eine Sperre.
+
 ## Ablauf
 
 1. Mit dem User klären, was ausnahmslos gelten muss (mindestens: bestehende Tests schützen; dazu der Hook für `plan.md`), Frage für Frage im Auswahlwerkzeug.
 2. Plan zeigen: Datei, Matcher, Skript, was gesperrt und was erlaubt ist. **Vorab sagen:** Claude Code schützt `.claude/`; der User muss das Schreiben freigeben, wenn der Host fragt, oder die Dateien selbst anlegen. Dann das Ja im Auswahlwerkzeug.
-3. Nach Ja anlegen und prüfen, ohne den Hook in der eigenen Session auszulösen: das Skript mit einem JSON auf stdin (`tool_name`, `tool_input`) für einen bestehenden Test (Exit 2), einen neuen Test und eine Code-Datei (Exit 0) und für die Shell: `rm <bestehender Test>` (Exit 2), `python3 -m unittest` (Exit 0).
+3. Nach Ja anlegen und prüfen, ohne den Hook in der eigenen Session auszulösen: jedes Skript mit absolutem Pfad und einem JSON auf stdin (`tool_name`, `tool_input`); für Testdateien einen bestehenden Test (Exit 2), einen neuen Test und eine Code-Datei (Exit 0) und in der Shell `rm <bestehender Test>` (Exit 2), `python3 -m unittest` (Exit 0); für `plan.md` einen Befehl ohne `git commit` (Exit 0).
 4. Weil Hooks zur Konfiguration gehören, schlägt Claudia vor dem Commit `/claudia-evals` vor (`evals.md`; gibt es noch keine Evals, sagt sie das). Dann Commit `hooks: <produkt>` und die nächste Frage im Auswahlwerkzeug.
 
 ## Was ein Hook nicht leistet
