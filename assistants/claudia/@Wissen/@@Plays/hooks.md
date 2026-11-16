@@ -1,6 +1,6 @@
 # Play — Hooks als Leitplanken
 
-Stufe 3, Build (im Graph unter Deploy eingeordnet). Playbook S. 27, dazu S. 32, in eigenen Worten.
+Stufe 3, Build (im Graph unter Deploy eingeordnet). Playbook S. 27, dazu S. 20, 32, in eigenen Worten.
 
 ## Was sich ändert
 
@@ -24,9 +24,9 @@ Keine; ein Einstiegspunkt (S. 9). Hooks werden in `.claude/settings.json` des Pr
 - **Keine Freigabe durch Menschen im Build:** Ein Hook, der einen Menschen fragt, setzt ihn zurück auf den kritischen Pfad aller parallelen Sessions; solche Hooks gehören zu den Toren in Stufe 5 (S. 27; in Claudia ab 0.3).
 - **Begründen:** Jede Sperre sagt, warum sie sperrt (Festlegung von Claudia nach dem Muster der Tore, S. 40–43).
 
-## Der Hook für Testdateien (0.1)
+## Der Hook für Testdateien
 
-Der Feedback loop braucht Schutz: Ein Agent, der Code repariert, darf die Prüfung nicht aufweichen (S. 32). In Claudia 0.1 gilt (Festlegung von Claudia):
+Der Feedback loop braucht Schutz: Ein Agent, der Code repariert, darf die Prüfung nicht aufweichen (S. 32). In Claudia gilt (Festlegung von Claudia):
 
 - **gesperrt:** Änderungen an **bestehenden** Testdateien (Write oder Edit auf eine Datei, die es schon gibt). Wo die Tests liegen, nimmt Claudia aus dem Produkt (`tests/`, `test_*.py`, `*_test.go`, …) und schreibt es in das Skript und in den Plan;
 - **erlaubt:** neue Testdateien, damit der fehlschlagende Test vor einer Korrektur geschrieben werden kann.
@@ -103,10 +103,10 @@ Exit-Code 2 sperrt die Handlung, und die Meldung auf stderr geht als Begründung
 
 ## Ablauf
 
-1. Mit dem User klären, was ausnahmslos gelten muss (in 0.1 mindestens: bestehende Tests schützen), Frage für Frage im Auswahlwerkzeug.
+1. Mit dem User klären, was ausnahmslos gelten muss (mindestens: bestehende Tests schützen; dazu der Hook für `plan.md`), Frage für Frage im Auswahlwerkzeug.
 2. Plan zeigen: Datei, Matcher, Skript, was gesperrt und was erlaubt ist. **Vorab sagen:** Claude Code schützt `.claude/`; der User muss das Schreiben freigeben, wenn der Host fragt, oder die Dateien selbst anlegen. Dann das Ja im Auswahlwerkzeug.
 3. Nach Ja anlegen und prüfen, ohne den Hook in der eigenen Session auszulösen: das Skript mit einem JSON auf stdin (`tool_name`, `tool_input`) für einen bestehenden Test (Exit 2), einen neuen Test und eine Code-Datei (Exit 0) und für die Shell: `rm <bestehender Test>` (Exit 2), `python3 -m unittest` (Exit 0).
-4. Commit `hooks: <produkt>`, dann die nächste Frage im Auswahlwerkzeug.
+4. Weil Hooks zur Konfiguration gehören, schlägt Claudia vor dem Commit `/claudia-evals` vor (`evals.md`; gibt es noch keine Evals, sagt sie das). Dann Commit `hooks: <produkt>` und die nächste Frage im Auswahlwerkzeug.
 
 ## Was ein Hook nicht leistet
 
@@ -114,4 +114,4 @@ Hooks binden den **Agenten** in einer Session, nicht Menschen: Wer selbst im Edi
 
 ## Governance und Messen
 
-Hooks sind versioniert in `.claude/settings.json` und damit prüfbar wie Code. Das Playbook nennt für die Leitplanken im Build keine eigenen Indikatoren; Claudia zählt in 0.1 die gesperrten Versuche, die im Transkript stehen, und sagt, dass das ihre eigene Messung ist.
+Hooks sind versioniert in `.claude/settings.json` und damit prüfbar wie Code. Das Playbook nennt für die Leitplanken im Build keine eigenen Indikatoren; Claudia zählt die gesperrten Versuche, die im Transkript stehen, und sagt, dass das ihre eigene Messung ist.

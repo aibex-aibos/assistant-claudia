@@ -8,15 +8,17 @@ Bisher wanderte eine Idee über Backlog, User Stories, Schätzungen und Refineme
 
 ## Voraussetzungen
 
-Keine; ein Einstiegspunkt (S. 9, 12). Nötig sind ein vereinbarter Aufbau für `intent.md` und ein versionierter Ort, für ein einzelnes Produkt der Ordner `intent/` im Repo des Produkts (S. 12).
+Keine; ein Einstiegspunkt (S. 9, 12). Nötig sind ein vereinbarter Aufbau für `intent.md` und ein versionierter Ort, für ein einzelnes Produkt der Ordner `intent/` im Repo des Produkts (S. 12). Den Aufbau kann ein Skill festhalten (S. 12, Schritt 3); bei Claudia ist das `/claudia-intent`.
 
-## Ablauf
+## Ablauf (`/claudia-intent`)
+
+Claudia bietet `/claudia-intent` an, wenn eine Idee, ein Wunsch oder ein Fehler festgehalten werden soll; der Skill führt diesen Ablauf.
 
 1. Der Urheber schildert das Problem in seinen eigenen Worten: was heute nicht geht, wen es betrifft, wie es besser wäre, was nicht dazugehört. Eine feste Form braucht er nicht.
 2. Claudia fragt nach, wie eine Analystin: **Umfang, Nutzer, Grenzen, Erfolg**, bis die Idee konkret ist. Frage für Frage im Auswahlwerkzeug, je mit Empfehlung und eigener Antwort; wenige Fragen je Aufruf; nichts fragen, was schon gesagt ist.
 3. Claudia schreibt `intent/<kurzname>/intent.md` nach dem Aufbau unten und zeigt die Datei.
 4. Claudia legt die Annahme im Auswahlwerkzeug vor: „Ja, `intent.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", „Ablehnen", eigene Antwort. Der Urheber korrigiert, was falsch verstanden wurde.
-5. Nach der Annahme (als Product Owner): `Status: angenommen`, Commit `intent: <kurzname>`, ohne zweite Rückfrage. Autor und Zeit stehen damit in der Geschichte (S. 12). Danach die nächste Frage: „Plan im Plan Mode erstellen (Empfohlen)" oder „Später".
+5. Nach der Annahme (als Product Owner): `Status: angenommen`, Commit `intent: <kurzname>`, ohne zweite Rückfrage. Autor und Zeit stehen damit in der Geschichte (S. 12). Danach die nächste Frage: liegen im Produkt keine Vorgaben als Skills, „Vorgaben aufnehmen (Empfohlen)“ (`skills.md`), sonst „Spec erstellen mit `/claudia-spec` (Empfohlen)“; dazu „Später“.
 
 ## Aufbau von `intent.md`
 
@@ -52,6 +54,6 @@ Der Beleg ist das committete `intent.md` mit Autor, Zeit und Geschichte. Der Pro
 | Indikator | Was | Woher |
 |---|---|---|
 | früh | Zeit vom ersten Gespräch bis zum Commit von `intent.md`; erwartet werden Stunden statt Wochen | Git-Geschichte des Produkts |
-| spät | Anteil der Absichten, die in die nächste Stufe gehen statt verworfen zu werden; Änderungen an `intent.md` nach dem ersten Commit der Spec | Git-Geschichte (ab 0.2 mit `spec.md`) |
+| spät | Anteil der Absichten, die in die nächste Stufe gehen statt verworfen zu werden; Änderungen an `intent.md` nach dem ersten Commit der Spec | Git-Geschichte: `intent:`, `spec:` und Commits an `intent.md` danach |
 
 (S. 13)
