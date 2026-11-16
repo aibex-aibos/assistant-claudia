@@ -21,7 +21,7 @@ Keine; ein Einstiegspunkt (S. 9). Hooks werden in `.claude/settings.json` des Pr
 ## Regeln
 
 - **Schnell und eng:** Ein Hook läuft bei jeder passenden Handlung; er soll schnell sein und nur die geänderte Datei prüfen. Teure Prüfungen wie die ganze Testsuite gehören an den Commit oder den PR (S. 27).
-- **Keine Freigabe durch Menschen im Build:** Ein Hook, der einen Menschen fragt, setzt ihn zurück auf den kritischen Pfad aller parallelen Sessions; solche Hooks gehören zu den Toren in Stufe 5 (S. 27; in Claudia ab 0.3).
+- **Keine Freigabe durch Menschen im Build:** Ein Hook, der einen Menschen fragt, setzt ihn zurück auf den kritischen Pfad aller parallelen Sessions; solche Hooks gehören zu den Toren in Stufe 5 (S. 27; in Claudia ab 0.4).
 - **Begründen:** Jede Sperre sagt, warum sie sperrt (Festlegung von Claudia nach dem Muster der Tore, S. 40–43).
 
 ## Der Hook für Testdateien
@@ -97,7 +97,7 @@ elif daten.get("tool_name") == "Bash":
 sys.exit(0)
 ```
 
-Lesende Befehle (`cat`, `python3 -m unittest`, `git diff`) bleiben erlaubt; gesperrt wird nur, wenn ein ändernder Befehl einen bestehenden Test nennt. `cp <test> <kopie>` wird mitgesperrt, obwohl es den Test nur liest; das ist bewusst vorsichtig. Das ist eine Leitplanke, kein vollständiger Schutz: Wer Befehle verschachtelt (z. B. in einem Skript), kommt daran vorbei. Den Rest fangen Review und CI ab (ab 0.3).
+Lesende Befehle (`cat`, `python3 -m unittest`, `git diff`) bleiben erlaubt; gesperrt wird nur, wenn ein ändernder Befehl einen bestehenden Test nennt. `cp <test> <kopie>` wird mitgesperrt, obwohl es den Test nur liest; das ist bewusst vorsichtig. Das ist eine Leitplanke, kein vollständiger Schutz: Wer Befehle verschachtelt (z. B. in einem Skript), kommt daran vorbei. Den Rest fangen Review und CI ab (ab 0.4).
 
 Exit-Code 2 sperrt die Handlung, und die Meldung auf stderr geht als Begründung an Claude.
 
@@ -193,7 +193,7 @@ Beide Skripte sind vor dem Schreiben mit Fällen geprüft (Lehre aus Claudia 0.1
 
 ## Was ein Hook nicht leistet
 
-Hooks binden den **Agenten** in einer Session, nicht Menschen: Wer selbst im Editor oder Terminal einen Test ändert, an dem geht kein Hook vorbei. Projekt-Hooks liegen im Repo und lassen sich ändern; man sieht es in der Geschichte. Unabschaltbar sind nur Hooks in den verwalteten Einstellungen der Organisation (S. 40, 42–43). Vor Änderungen durch Menschen schützen PR-Review, Branch Protection und CI (S. 37–46, ab 0.3). Sag das, wenn der User Hooks als Schutz vor dem Team versteht.
+Hooks binden den **Agenten** in einer Session, nicht Menschen: Wer selbst im Editor oder Terminal einen Test ändert, an dem geht kein Hook vorbei. Projekt-Hooks liegen im Repo und lassen sich ändern; man sieht es in der Geschichte. Unabschaltbar sind nur Hooks in den verwalteten Einstellungen der Organisation (S. 40, 42–43). Vor Änderungen durch Menschen schützen PR-Review, Branch Protection und CI (S. 37–46, ab 0.4). Sag das, wenn der User Hooks als Schutz vor dem Team versteht.
 
 ## Governance und Messen
 

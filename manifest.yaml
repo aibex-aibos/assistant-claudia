@@ -1,9 +1,9 @@
 name: assistant-claudia
-version: 0.2.0
+version: 0.3.0
 type: assistant
 description: Assistentin Claudia, begleitet ein Softwareprojekt durch das AI-native SDLC nach dem Playbook von Anthropic
 requires:
-  aios: ">=0.6,<0.7"
+  aibos: ">=0.7,<0.8"
 contents:
   assistants: [claudia]
   skills: [claudia-intent, claudia-spec, claudia-evals]

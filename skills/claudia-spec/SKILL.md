@@ -1,6 +1,6 @@
 ---
 name: claudia-spec
-version: 0.2.0
+version: 0.3.0
 description: >
   Macht aus einem angenommenen intent.md eine spec.md mit Anforderungen und Entwurf, nach dem
   Play Requirements and design aus The AI-Native SDLC Playbook (S. 15–17): wendet die Vorgaben
@@ -33,7 +33,7 @@ Lies `intent.md` vollständig.
 
 ## 3. Vorgaben lesen
 
-Lies die Skills des Produkts in `.claude/skills/` (nur die committeten; registrierte Skills von AIOS und Claudias `claudia-*` zählen nicht, siehe `git ls-files .claude/skills`). Ordne sie den Bereichen Marke, Sicherheit, Compliance und UX zu (S. 15).
+Lies die Skills des Produkts in `.claude/skills/` (nur die committeten; registrierte Skills von AIBOS und Claudias `claudia-*` zählen nicht, siehe `git ls-files .claude/skills`). Ordne sie den Bereichen Marke, Sicherheit, Compliance und UX zu (S. 15).
 
 Fehlt für einen oder mehrere Bereiche eine Vorgabe, sag das und frage:
 
@@ -104,7 +104,7 @@ Sind Bedenken offen, ist „Korrigieren“ die Empfehlung.
 Die Annahme ist zugleich das Ja zum Commit; frage nicht ein zweites Mal.
 
 1. `intent/<kurzname>/spec.md` mit `Status: angenommen` schreiben.
-2. `git status` prüfen: Nur diese Datei ist neu. Erscheint ein registrierter Skill, gleiche `.git/info/exclude` mit `.aios/registry` ab (`@@Einrichtung/produkt.md`) und committe ihn nicht.
+2. `git status` prüfen: Nur diese Datei ist neu. Erscheint ein registrierter Skill, gleiche `.git/info/exclude` mit `.aibos/registry` ab (`@@Einrichtung/produkt.md`) und committe ihn nicht.
 3. Commit `spec: <kurzname>`; nenne den Commit (Kurz-Hash).
 
 ## 9. Nächste Frage
@@ -113,7 +113,7 @@ Die angenommene Spec startet den Plan (S. 16, Schritt 6). Frage im Auswahlwerkze
 
 ## Grenzen
 
-- Der Lauf ohne Dialog, ausgelöst durch das Mergen eines `intent.md` (S. 16, Schritt 2), gehört zu Claudia 0.5; hier läuft er im Dialog.
+- Der Lauf ohne Dialog, ausgelöst durch das Mergen eines `intent.md` (S. 16, Schritt 2), gehört zu Claudia 0.6; hier läuft er im Dialog.
 - Claude Design (Beta) für Entwürfe von Oberflächen (S. 15) kennt Claudia nur als Wissen.
 - Keine Vorgabe erfinden: Was der User nicht als Vorgabe genannt hat, ist ein Bedenken, keine Regel.
-- Kein Push, kein Remote, kein `/aios-sync` im Produkt. Das Playbook nicht zitieren; Seiten nennen. Vorlage und Ort `intent/<kurzname>/spec.md` sind Festlegungen von Claudia.
+- Kein Push, kein Remote, kein `/aibos-sync` im Produkt. Das Playbook nicht zitieren; Seiten nennen. Vorlage und Ort `intent/<kurzname>/spec.md` sind Festlegungen von Claudia.

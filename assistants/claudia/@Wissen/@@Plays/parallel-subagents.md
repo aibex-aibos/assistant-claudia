@@ -26,7 +26,7 @@ Parallele Sessions erhöhen die Zahl der Aufgaben in Arbeit, Subagents halten je
 
    Ohne Dialog (z. B. zum Ausprobieren): `claude -p --worktree <aufgabe> --setting-sources project "<auftrag>"`. Claude Code legt den Worktree unter `.claude/worktrees/<aufgabe>` an, auf dem Zweig `worktree-<aufgabe>`.
 
-   **Warum `--setting-sources project`** (Festlegung von Claudia, erprobt in einer Probe): Im Worktree fehlt die lokale Einrichtung von AIBOS (`@/`, `.aios/`), weil sie nicht committet ist. Der Hook von AIBOS hält den Worktree darum für ein nicht eingerichtetes Projekt und lenkt die Session ab. Mit `--setting-sources project` gelten nur die Einstellungen des Produkts: `CLAUDE.md`, Hooks, Skills und Subagents des Produkts wirken, Claudia selbst wird dort nicht geladen; sie steuert aus der Hauptsession.
+   **Warum `--setting-sources project`** (Festlegung von Claudia, erprobt in einer Probe): Im Worktree fehlt die lokale Einrichtung von AIBOS (`@/`, `.aibos/`), weil sie nicht committet ist. Der Hook von AIBOS hält den Worktree darum für ein nicht eingerichtetes Projekt und lenkt die Session ab. Mit `--setting-sources project` gelten nur die Einstellungen des Produkts: `CLAUDE.md`, Hooks, Skills und Subagents des Produkts wirken, Claudia selbst wird dort nicht geladen; sie steuert aus der Hauptsession.
 3. **Zwei oder drei Sessions** zum Anfang. Die Grenze ist, wie viele Ströme eine Person sorgfältig prüfen kann; mehr Sessions erst, wenn das Prüfen mithält (S. 28, Schritt 3). Claudia nennt die Zahl, bevor etwas startet.
 4. **Rechte:** Weil `--setting-sources project` die Einstellungen des Users weglässt, können Rückfragen zu Befehlen kommen. Claudia schlägt Freigaben für die sicheren Befehle des Produkts in `.claude/settings.json` vor (z. B. den Test-Befehl), nach Ja, Commit `hooks: <produkt>`.
 5. **Prüfen und zusammenführen** (Festlegung von Claudia): Nach dem Lauf prüft Claudia jeden Zweig: Tests mit wörtlicher Ausgabe, Abgleich mit `plan.md` (nur die Dateien der Aufgabe geändert?). Nach dem Ja des Users führt sie den Zweig lokal in `main` zusammen, mit einem Merge-Commit `merge: <kurzname>/<aufgabe>`, und lässt die Tests danach noch einmal laufen.
@@ -61,7 +61,7 @@ Mehr Sessions heißt mehr Ausgabe; die Kontrollen kommen darum aus der Konfigura
 
 | Indikator | Was | Woher |
 |---|---|---|
-| früh | gleichzeitige Sessions je Engineer bei gleicher Qualität des Reviews; Anteil des Tages mit Steuern statt Warten | OpenTelemetry (ab 0.6); in 0.2 die zusammengeführten Worktree-Zweige je Änderung |
-| spät | zusammengeführte Änderungen je Woche neben der Nacharbeit | PR-Geschichte (ab 0.3); in 0.2 die Commits |
+| früh | gleichzeitige Sessions je Engineer bei gleicher Qualität des Reviews; Anteil des Tages mit Steuern statt Warten | OpenTelemetry (ab 0.7); in 0.3 die zusammengeführten Worktree-Zweige je Änderung |
+| spät | zusammengeführte Änderungen je Woche neben der Nacharbeit | PR-Geschichte (ab 0.4); in 0.3 die Commits |
 
 (S. 29)

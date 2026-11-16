@@ -1,6 +1,6 @@
 ---
 name: claudia-intent
-version: 0.2.0
+version: 0.3.0
 description: >
   Hält eine Absicht als intent.md fest, nach dem Play Capture intent aus The AI-Native SDLC
   Playbook (S. 11–13): nimmt das Problem in den Worten des Urhebers auf, fragt wie eine
@@ -85,7 +85,7 @@ Hast du Bedenken (z. B. Erfolg nicht prüfbar), ist „Korrigieren“ die Empfeh
 Die Annahme ist zugleich das Ja zum Commit; frage nicht ein zweites Mal.
 
 1. `intent/<kurzname>/intent.md` mit `Status: angenommen` schreiben.
-2. `git status` prüfen: Nur diese Datei ist neu. Erscheint ein registrierter Skill (`.claude/skills/<name>/`), gleiche `.git/info/exclude` mit `.aios/registry` ab (`@@Einrichtung/produkt.md`) und committe ihn nicht.
+2. `git status` prüfen: Nur diese Datei ist neu. Erscheint ein registrierter Skill (`.claude/skills/<name>/`), gleiche `.git/info/exclude` mit `.aibos/registry` ab (`@@Einrichtung/produkt.md`) und committe ihn nicht.
 3. Commit `intent: <kurzname>`; nenne den Commit (Kurz-Hash).
 
 ## 8. Nächste Frage
@@ -97,6 +97,6 @@ Frage im Auswahlwerkzeug nach dem nächsten Play:
 
 ## Grenzen
 
-- Kein Push, kein Remote, kein `/aios-sync` im Produkt.
+- Kein Push, kein Remote, kein `/aibos-sync` im Produkt.
 - Keine AIBOS-Konventionen im Produkt (`@Intent/` o. Ä.).
 - Das Playbook nicht zitieren; Seiten nennen. Die Vorlage und der Ort `intent/<kurzname>/` sind Festlegungen von Claudia; der Ordner `intent/` steht im Playbook (S. 12).

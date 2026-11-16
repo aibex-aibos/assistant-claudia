@@ -1,8 +1,8 @@
 # assistant-claudia
 
-Assistentin *Claudia* von AIbex AIOS, Version 0.2.0. Sie begleitet ein Softwareprojekt durch das AI-native SDLC, genau so, wie es *The AI-Native SDLC Playbook* (Louis Claxton, Anthropic, 2026) beschreibt, umgesetzt mit Claude Code. Jede Antwort beginnt mit „🦸‍♀️ “.
+Assistentin *Claudia* von AIbex AIBOS, Version 0.3.0. Sie begleitet ein Softwareprojekt durch das AI-native SDLC, genau so, wie es *The AI-Native SDLC Playbook* (Louis Claxton, Anthropic, 2026) beschreibt, umgesetzt mit Claude Code. Jede Antwort beginnt mit „🦸‍♀️ “.
 
-## Umfang von 0.2
+## Umfang von 0.3
 
 Die Build-Stufe vollständig, lokal, für einen Einzelentwickler und Produkte ohne Remote. Neun Plays:
 
@@ -28,13 +28,13 @@ Jede Stufe endet mit einem lokalen Commit im Produkt. PR review, Evals in CI, Fr
 
 ## Holen
 
-**Voraussetzung:** AIbex AIOS v0.6 ist installiert, der Vault ist an der Vault-Root gebunden (`aios --activate v0.6.<n>`), und Claude Code ist der Host.
+**Voraussetzung:** AIbex AIBOS v0.7 ist installiert, der Vault ist an der Vault-Root gebunden (`aibos --activate v0.7.<n>`), und Claude Code ist der Host. Für AIbex AIOS v0.6 gibt es Claudia 0.2.0 (`aios --fetch "assistant-claudia~=0.2.0"`).
 
 ```bash
-aios --fetch assistant-claudia
+aibos --fetch assistant-claudia
 ```
 
-Zuordnen mit `/aios-assistant claudia` im Projekt, unter dem die Produkte liegen sollen. Claudia und ihre Slash-Commands wirken ab dem nächsten Chat. Ein neues Produkt legt sie auf Wunsch in `product/<name>/` an (ein AIBOS-Paket in `@Package/<paket>/`); die Arbeit am Produkt läuft dann in einer Session in dessen Ordner. Ein Produkt aus Claudia 0.1 stellt sie auf Wunsch um, damit Skills des Produkts committet werden können.
+Zuordnen mit `/aibos-assistant claudia` im Projekt, unter dem die Produkte liegen sollen. Claudia und ihre Slash-Commands wirken ab dem nächsten Chat. Ein neues Produkt legt sie auf Wunsch in `product/<name>/` an (ein AIBOS-Paket in `@Package/<paket>/`); die Arbeit am Produkt läuft dann in einer Session in dessen Ordner. Ein Produkt aus Claudia 0.1 stellt sie auf Wunsch um, damit Skills des Produkts committet werden können.
 
 ## Quelle
 
@@ -42,4 +42,4 @@ Das Wissen gibt das Playbook in eigenen Worten mit Seitenangaben wieder. Das Pla
 
 ## Lizenz
 
-Apache License 2.0 (`LICENSE`), Rechteinhaber AIbex KG (`NOTICE`). Die Marken „AIbex“ und „AIbex AIOS“ sind nicht mitlizenziert. „Claude“ und „Anthropic“ sind Marken von Anthropic; das Paket steht in keiner Verbindung zu Anthropic.
+Apache License 2.0 (`LICENSE`), Rechteinhaber AIbex KG (`NOTICE`). Die Marken „AIbex“ und „AIbex AIBOS“ sind nicht mitlizenziert. „Claude“ und „Anthropic“ sind Marken von Anthropic; das Paket steht in keiner Verbindung zu Anthropic.

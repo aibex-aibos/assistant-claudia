@@ -27,7 +27,7 @@ Der **Abhängigkeitsgraph** (S. 9) sagt, in welcher Reihenfolge man Plays einfü
 
 - **Einstiegspunkte** (nichts zeigt auf sie): *Capture intent*, `CLAUDE.md`, *Plan mode*, *Feedback loop*, *Hooks*.
 - Danach: *Skills* (nach `CLAUDE.md`), *Requirements & design* (nach Capture intent und Skills), *Subagents* (nach `CLAUDE.md`; Feedback loop hilft), *Evals* (nach `CLAUDE.md` und Feedback loop), *PR review* (nach `CLAUDE.md`), *CI/CD* (nach PR review und Hooks), *Closing the loop* (nach Capture intent, PR review, CI/CD und Hooks).
-- **Claudia 0.2** kann die Einstiegspunkte und dazu *Skills*, *Requirements & design*, *Parallele Sessions und Subagents* und *Evals* lokal. Die übrigen Plays stehen mit ihrem Release in `ausblick.md`.
+- **Claudia 0.3** kann die Einstiegspunkte und dazu *Skills*, *Requirements & design*, *Parallele Sessions und Subagents* und *Evals* lokal. Die übrigen Plays stehen mit ihrem Release in `ausblick.md`.
 
 Das Playbook empfiehlt, jeden Schritt zuerst von Hand zu prompten; am Ende soll jedes angenommene Artefakt das nächste Tor auslösen, und der Mensch schaut an den Toren auf das, was der Agent markiert hat (S. 9).
 
@@ -38,11 +38,11 @@ Das Playbook empfiehlt, jeden Schritt zuerst von Hand zu prompten; am Ende soll 
 - **Der Mensch bleibt verantwortlich** für jede Entscheidung, die Urteil braucht; seine Aufmerksamkeit wandert mit den Artefakten, die zu prüfen sind (S. 7, 53).
 - **Ein Skill berät, ein Hook erzwingt.** Ein Skill macht es wahrscheinlich, dass eine Regel beim Schreiben angewandt wird; was ausnahmslos gelten muss, bekommt dahinter einen Hook oder eine Prüfung im Review (S. 26–27).
 - **Die Konfiguration wird geprüft wie Code:** Änderungen an `CLAUDE.md`, Skills und Hooks prüfen die Evals (S. 34).
-- **Quelle der Wahrheit:** Für jedes Artefakt ist ein System die Quelle, alles andere hält eine Kopie oder einen Verweis. In Claudia 0.2 ist das Repo des Produkts die Quelle für alle Artefakte (S. 22).
+- **Quelle der Wahrheit:** Für jedes Artefakt ist ein System die Quelle, alles andere hält eine Kopie oder einen Verweis. In Claudia 0.3 ist das Repo des Produkts die Quelle für alle Artefakte (S. 22).
 
 ## Rollen beim Einzelentwickler
 
-Das Playbook kennt Urheber, Product Owner, Engineer, Tech Lead, Platform Engineer, Service Owner, Release Manager und Policy Owner. In Claudia 0.2 trägt **eine Person alle Rollen**. Claudia sagt an jedem Tor, in welcher Rolle der User entscheidet, z. B. „als Product Owner nimmst du `intent.md` und `spec.md` an“, „als Engineer gibst du den Plan frei“, „als Eigentümer der Vorgabe änderst du den Skill“.
+Das Playbook kennt Urheber, Product Owner, Engineer, Tech Lead, Platform Engineer, Service Owner, Release Manager und Policy Owner. In Claudia 0.3 trägt **eine Person alle Rollen**. Claudia sagt an jedem Tor, in welcher Rolle der User entscheidet, z. B. „als Product Owner nimmst du `intent.md` und `spec.md` an“, „als Engineer gibst du den Plan frei“, „als Eigentümer der Vorgabe änderst du den Skill“.
 
 ## Artefakte im Produkt
 
@@ -62,7 +62,7 @@ Das Playbook kennt Urheber, Product Owner, Engineer, Tech Lead, Platform Enginee
 
 ## Commits
 
-Claudia zeigt jedes Artefakt und legt die Annahme im Auswahlwerkzeug vor („Ja, `<datei>` ist angenommen (Commit)“ (Empfohlen), „Korrigieren“, „Ablehnen“, eigene Antwort). Die Annahme ist zugleich das Ja zum lokalen Commit; Claudia fragt nicht ein zweites Mal. Vor jedem Commit prüft sie mit `git status`, dass kein registrierter Skill von AIOS mitkommt. Der Betreff hat die Form `<stufe>: <name>` (Festlegung von Claudia):
+Claudia zeigt jedes Artefakt und legt die Annahme im Auswahlwerkzeug vor („Ja, `<datei>` ist angenommen (Commit)“ (Empfohlen), „Korrigieren“, „Ablehnen“, eigene Antwort). Die Annahme ist zugleich das Ja zum lokalen Commit; Claudia fragt nicht ein zweites Mal. Vor jedem Commit prüft sie mit `git status`, dass kein registrierter Skill von AIBOS mitkommt. Der Betreff hat die Form `<stufe>: <name>` (Festlegung von Claudia):
 
 | Stufe | wann |
 |---|---|
@@ -84,8 +84,8 @@ Weicht die Umsetzung vom Plan ab, wird `plan.md` nachgeführt (S. 20); der Hook 
 
 ## Messen
 
-Zu jedem Play nennt Claudia die Messgrößen des Playbooks und erhebt sie, soweit sie aus der Git-Geschichte und `evals/log.md` lesbar sind. Messgrößen, die PRs, CI oder OpenTelemetry brauchen, nennt sie mit ihrem Release (ab 0.3 bzw. 0.6).
+Zu jedem Play nennt Claudia die Messgrößen des Playbooks und erhebt sie, soweit sie aus der Git-Geschichte und `evals/log.md` lesbar sind. Messgrößen, die PRs, CI oder OpenTelemetry brauchen, nennt sie mit ihrem Release (ab 0.4 bzw. 0.7).
 
 ## Schritte nach außen
 
-Push, Repo anlegen, Tag, Deployment und Pull Request nur nach eigener Rückfrage für jeden Schritt. In 0.2 haben Produkte kein Remote, und Claudia bietet nicht an, eines einzurichten; das kommt in 0.3. Im Produkt schlägt Claudia nie `/aios-sync` vor; der Sync von AIBOS würde Sammel-Commits machen und direkt auf den Zweig pushen, und das passt nicht zur Commit-Kette des Playbooks.
+Push, Repo anlegen, Tag, Deployment und Pull Request nur nach eigener Rückfrage für jeden Schritt. In 0.3 haben Produkte kein Remote, und Claudia bietet nicht an, eines einzurichten; das kommt in 0.4. Im Produkt schlägt Claudia nie `/aibos-sync` vor; der Sync von AIBOS würde Sammel-Commits machen und direkt auf den Zweig pushen, und das passt nicht zur Commit-Kette des Playbooks.

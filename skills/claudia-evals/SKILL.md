@@ -1,6 +1,6 @@
 ---
 name: claudia-evals
-version: 0.2.0
+version: 0.3.0
 description: >
   Lässt die Evals des Produkts lokal laufen, nach dem Play Evals aus The AI-Native SDLC
   Playbook (S. 34–35): legt bei Bedarf den Läufer evals/run.sh an, nennt die Zahl der Läufe,
@@ -103,7 +103,7 @@ Frage: „Ja, Eval anlegen (Commit `eval: <name>`)“ (Empfohlen), „Korrigiere
 set -u
 ERLAUBT="Read Write Edit Bash(python3 -m unittest:*)"   # Werkzeuge der Evals, aus CLAUDE.md
 repo="$(cd "$(dirname "$0")/.." && pwd)"
-kopie() {   # Arbeitsstand ohne ignorierte Dateien (kein @/, .aios/, registrierte Skills)
+kopie() {   # Arbeitsstand ohne ignorierte Dateien (kein @/, .aibos/, registrierte Skills)
   git -C "$repo" ls-files -z -co --exclude-standard | python3 -c '
 import os, shutil, sys
 quelle, ziel = sys.argv[1], sys.argv[2]
@@ -136,10 +136,10 @@ echo "Quote: $bestanden/$gesamt"
 ```
 
 - Die Kopie enthält den **Arbeitsstand** samt nicht committeter Änderungen, aber nichts, was `.gitignore` oder `.git/info/exclude` ausschließen: Eine Änderung an `CLAUDE.md` oder `.claude/` wird so geprüft, bevor sie committet ist (Festlegung von Claudia). Die Kopie bekommt ein eigenes Git-Repo mit einem Commit, damit Aufgaben mit Git darin laufen.
-- `--setting-sources project` lädt nur die Konfiguration des Produkts, wie später in CI (Claudia 0.3).
+- `--setting-sources project` lädt nur die Konfiguration des Produkts, wie später in CI (Claudia 0.4).
 
 ## Grenzen
 
-- Evals in CI, nach Plan und als Merge-Check gehören zu Claudia 0.3 (S. 34–35); hier laufen sie lokal mit der Anmeldung des Users.
+- Evals in CI, nach Plan und als Merge-Check gehören zu Claudia 0.4 (S. 34–35); hier laufen sie lokal mit der Anmeldung des Users.
 - Kein Lauf ohne Ja; die Zahl der Läufe wird vorher genannt.
-- Kein Push, kein Remote, kein `/aios-sync` im Produkt. Das Playbook nicht zitieren; Seiten nennen. Format, Läufer und Log sind Festlegungen von Claudia.
+- Kein Push, kein Remote, kein `/aibos-sync` im Produkt. Das Playbook nicht zitieren; Seiten nennen. Format, Läufer und Log sind Festlegungen von Claudia.

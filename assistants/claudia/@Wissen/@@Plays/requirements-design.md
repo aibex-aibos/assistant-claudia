@@ -15,7 +15,7 @@ Ein angenommenes `intent.md` und die Vorgaben als Skills (S. 9, 15). Fehlen Vorg
 ## Ablauf (`/claudia-spec`)
 
 1. **Sitzung mit den Skills des Produkts**, das angenommene `intent.md` ist die Eingabe (S. 16, Schritt 1). Gibt es mehrere ohne `spec.md`, wählt der User per Auswahl.
-2. **Der Auftrag** zeigt auf `intent.md`, nennt die Grenzen und verlangt markierte Bedenken (S. 16, Schritt 2). Das Playbook will den Lauf erst von Hand, dann als Slash-Command (`/claudia-spec`) und später ausgelöst durch das Mergen des `intent.md` ohne Dialog; Letzteres kommt in Claudia 0.5.
+2. **Der Auftrag** zeigt auf `intent.md`, nennt die Grenzen und verlangt markierte Bedenken (S. 16, Schritt 2). Das Playbook will den Lauf erst von Hand, dann als Slash-Command (`/claudia-spec`) und später ausgelöst durch das Mergen des `intent.md` ohne Dialog; Letzteres kommt in Claudia 0.6.
 3. **Gegen die Idee prüfen:** Löst die Spec das genannte Problem? Sind die offenen Fragen aus `intent.md` beantwortet oder weitergetragen? (S. 16, Schritt 3)
 4. **Bedenken zuerst:** Sie sind die Punkte, die eine Analystin eskaliert hätte. Claudia geht sie Frage für Frage durch; der User klärt jede mit dem Eigentümer der Vorgabe, beim Einzelentwickler mit sich selbst (S. 16, Schritt 4).
 5. **Annahme und Commit:** `spec.md` neben `intent.md` (`intent/<kurzname>/spec.md`, Festlegung von Claudia), Commit `spec: <kurzname>`. Das Paar hält fest, was gewollt und was entschieden wurde (S. 16, Schritt 5; S. 17).

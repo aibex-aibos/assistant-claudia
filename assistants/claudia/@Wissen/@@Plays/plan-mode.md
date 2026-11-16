@@ -49,11 +49,11 @@ Der Entwurf wird geprüft, solange eine Kursänderung nur eine Textänderung ist
 
 | Indikator | Was | Woher |
 |---|---|---|
-| früh | Anteil der Änderungen, die im ersten Durchgang fertig werden; Zeit von der Annahme des Plans bis zum Merge | in 0.2 die Git-Geschichte (Commits nach `plan:`); PR-Daten ab 0.3 |
+| früh | Anteil der Änderungen, die im ersten Durchgang fertig werden; Zeit von der Annahme des Plans bis zum Merge | in 0.3 die Git-Geschichte (Commits nach `plan:`); PR-Daten ab 0.4 |
 | spät | Nacharbeit je Änderung; wie oft der fertige Diff noch zu `plan.md` passt | Git-Geschichte |
 
 (S. 21)
 
 ## Auto mode
 
-Auto mode (S. 21) gehört nicht zu 0.2, sondern zu 0.4: Claude setzt nach angenommenem Plan ohne Rückfrage je Bearbeitung um. Das setzt reife Leitplanken voraus (`CLAUDE.md`, Skills, Hooks, Tests); siehe `ausblick.md`.
+Auto mode (S. 21) gehört nicht zu 0.3, sondern zu 0.5: Claude setzt nach angenommenem Plan ohne Rückfrage je Bearbeitung um. Das setzt reife Leitplanken voraus (`CLAUDE.md`, Skills, Hooks, Tests); siehe `ausblick.md`.

@@ -15,7 +15,7 @@ Keine zwingend; `CLAUDE.md` hilft (S. 9, 25). Nötig ist eine Regel mit einem be
 ## Skills des Produkts und registrierte Skills
 
 - **Skills des Produkts** liegen in `.claude/skills/<name>/SKILL.md` des Produkts und werden **committet**, damit sie mit dem Code wandern (S. 25).
-- **Registrierte Skills** schreibt AIOS in denselben Ordner (Hüllen der Kernel-Skills, Skills der Kette, Claudias `/claudia-*`). Sie gehören **nicht** ins Produkt; Claudia hält sie über `.git/info/exclude` heraus (`@@Einrichtung/produkt.md`). Vor jedem Commit, der `.claude/` berührt, gleicht sie `exclude` mit `.aios/registry` ab und prüft `git status`.
+- **Registrierte Skills** schreibt AIBOS in denselben Ordner (Hüllen der Kernel-Skills, Skills der Kette, Claudias `/claudia-*`). Sie gehören **nicht** ins Produkt; Claudia hält sie über `.git/info/exclude` heraus (`@@Einrichtung/produkt.md`). Vor jedem Commit, der `.claude/` berührt, gleicht sie `exclude` mit `.aibos/registry` ab und prüft `git status`.
 
 ## Vorgaben als Skills
 
@@ -29,7 +29,7 @@ Keine zwingend; `CLAUDE.md` hilft (S. 9, 25). Nötig ist eine Regel mit einem be
 
 1. **Eine Regel wählen**, die heute uneinheitlich angewandt wird, z. B. eine Konvention für Fehlermeldungen oder eine Regel für Schnittstellen (S. 25, Schritt 1).
 2. **Als Skill schreiben:** ein Ordner mit `SKILL.md`; das Frontmatter sagt, wann er auslöst, der Rumpf, was zu tun ist (S. 25, Schritt 2). Claudia zeigt den Skill und legt die Annahme vor; sie sagt vorab, dass der User das Schreiben in `.claude/` freigeben muss.
-3. **Ablegen** in `.claude/skills/<name>/` des Produkts; Commit `skill: <name>` (S. 25, Schritt 3). Ein Plugin für die ganze Organisation kommt in 0.6.
+3. **Ablegen** in `.claude/skills/<name>/` des Produkts; Commit `skill: <name>` (S. 25, Schritt 3). Ein Plugin für die ganze Organisation kommt in 0.7.
 4. **Auslösen prüfen:** die Aufgabe auf mindestens drei verschiedene Weisen stellen und bestätigen, dass der Skill jedes Mal geladen wird (S. 25, Schritt 4). Ohne Dialog: `claude -p "<frage>" --output-format stream-json --verbose` im Produkt; im Ereignis `init` steht der Skill unter `skills`, und ein Werkzeugaufruf `Skill` mit seinem Namen zeigt, dass er geladen wurde.
 5. **Ändern, wenn sich die Regel ändert:** Skill ändern, der Eigentümer stimmt zu; die nächste Session nimmt die neue Fassung (S. 25, Schritte 5–6). Weil sich damit die Konfiguration ändert, schlägt Claudia vor dem Commit `/claudia-evals` vor (S. 34).
 
@@ -59,7 +59,7 @@ Ein Skill ist eine beratende Kontrolle. Aufrufe stehen im Transkript der Session
 
 | Indikator | Was | Woher |
 |---|---|---|
-| früh | Zeit von der Zustimmung zu einer geänderten Regel bis zum geänderten Skill | PR am Skill-Ordner (ab 0.3); in 0.2 der Abstand der Commits |
-| spät | Befunde im Review, die sich auf die Regel berufen; sie sollen gegen null gehen, sonst löst der Skill nicht aus oder weicht von der Regel ab | PR-Review (ab 0.3) |
+| früh | Zeit von der Zustimmung zu einer geänderten Regel bis zum geänderten Skill | PR am Skill-Ordner (ab 0.4); in 0.3 der Abstand der Commits |
+| spät | Befunde im Review, die sich auf die Regel berufen; sie sollen gegen null gehen, sonst löst der Skill nicht aus oder weicht von der Regel ab | PR-Review (ab 0.4) |
 
 (S. 26)

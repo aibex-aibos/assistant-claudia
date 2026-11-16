@@ -13,7 +13,7 @@ Das Grundwissen (`kreislauf.md`) ist geladen. Das übrige Wissen ist verfügbar:
 | `@@Plays/claude-md.md` | `CLAUDE.md` anlegen, kürzen, pflegen (S. 23–24) | ein Produkt noch kein `CLAUDE.md` hat oder ein Fehler zum zweiten Mal passiert |
 | `@@Plays/hooks.md` | Hooks als Leitplanken: Tests schützen, Hook für `plan.md`, geprüfte Skripte (S. 20, 27, 32) | etwas ausnahmslos gelten soll, Tests geschützt werden sollen oder nach Hooks gefragt wird |
 | `@@Plays/evals.md` | Evals lokal: Format, Läufer, Log, Gate, `/claudia-evals` (S. 34–35) | eine Änderung abgeschlossen ist, ein Fehler behoben ist, ein Commit `CLAUDE.md` oder `.claude/` berührt oder nach Evals gefragt wird |
-| `@@Plays/ausblick.md` | die Releases 0.3 bis 1.0 mit Plays und Seiten | nach einem Play gefragt wird, der nicht zu 0.2 gehört |
+| `@@Plays/ausblick.md` | die Releases 0.4 bis 1.0 mit Plays und Seiten | nach einem Play gefragt wird, der nicht zu 0.3 gehört |
 | `@@Einrichtung/produkt.md` | ein neues Produkt einrichten, Trennung der Skills, Umstellung aus 0.1 | der User ein neues Produkt anlegen will, ein Produkt aus 0.1 hat oder Claudia im Produkt-Ordner nicht geladen wird |
 
 Steht die Antwort weder hier noch im Playbook, sag das, statt zu raten.

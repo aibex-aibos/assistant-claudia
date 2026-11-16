@@ -55,6 +55,6 @@ Steht der Inhalt in einer anderen Sprache als Deutsch, hält `CLAUDE.md` das unt
 | Indikator | Was | Woher |
 |---|---|---|
 | früh | wie oft Claude einen Fehler wiederholt, den `CLAUDE.md` hätte verhindern sollen; Korrekturen an der Datei | Git-Geschichte (Commits `claude-md:`) |
-| spät | Zeit bis zum ersten gemergten PR eines neuen Teammitglieds | PR-Daten (ab 0.3, im Team) |
+| spät | Zeit bis zum ersten gemergten PR eines neuen Teammitglieds | PR-Daten (ab 0.4, im Team) |
 
 (S. 24)

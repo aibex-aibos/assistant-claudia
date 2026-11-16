@@ -18,7 +18,7 @@ Ein Einstiegspunkt (S. 9). Nötig sind eine Testsuite und ein Build, die lokal m
 2. **In `CLAUDE.md` eintragen:** jeden Befehl mit einem Beispiel für eine gesunde Ausgabe (Abschnitt *Befehle*).
 3. **Messbares Ziel** setzen, damit Claude ohne Rückfrage prüfen kann, z. B. „alle Tests in `tests/test_tage.py` grün".
 4. **Bei Fehlern zuerst der Test:** Claude bildet den Fehler als Test nach, lässt ihn laufen und bestätigt, dass er aus dem erwarteten Grund fehlschlägt; Commit `test: <kurzname>`. Erst dann die Korrektur, **ohne den Test zu ändern**; der Hook für Testdateien sichert das ab. Ein Test, der vor der Korrektur da war und den der Agent nicht umschreiben konnte, beweist, dass der Fehler weg ist.
-5. **Bei Oberflächen** ein Sichtvergleich: Claude bekommt ein Browser- oder Screenshot-Werkzeug und die Vorlage, setzt um, macht ein Bild, vergleicht, passt an; zwei oder drei Runden sind normal, und jede Runde soll besser werden (S. 32, Schritt 5). Claudia nutzt ein solches Werkzeug, wenn die Session eines hat; sonst sagt sie, dass sie die Oberfläche nicht sehen kann, und bittet um ein Bild oder eine Beschreibung. In Claudia 0.2 ist dieser Teil Wissen, nicht erprobt.
+5. **Bei Oberflächen** ein Sichtvergleich: Claude bekommt ein Browser- oder Screenshot-Werkzeug und die Vorlage, setzt um, macht ein Bild, vergleicht, passt an; zwei oder drei Runden sind normal, und jede Runde soll besser werden (S. 32, Schritt 5). Claudia nutzt ein solches Werkzeug, wenn die Session eines hat; sonst sagt sie, dass sie die Oberfläche nicht sehen kann, und bittet um ein Bild oder eine Beschreibung. In Claudia 0.3 ist dieser Teil Wissen, nicht erprobt.
 6. **Prüfen gehört zu „fertig":** Die Regel steht im Prüfblock von `CLAUDE.md`: vor „fertig" alle Prüfungen laufen lassen und die **wörtliche Ausgabe** zeigen (nicht nur „6 Tests grün"), als Codeblock, bei jedem Lauf, der zählt: dem fehlschlagenden Test vor einer Korrektur und dem grünen Lauf danach. Hat das Produkt keinen Build (z. B. ein einzelnes Skript), sagt `CLAUDE.md` das ausdrücklich unter *Befehle*.
 6a. Nach dem Commit `build:` bzw. `fix:` endet der Schritt mit der nächsten Frage im Auswahlwerkzeug (z. B. „`CLAUDE.md` anlegen (Empfohlen)").
 7. **Die Schleife schützen:** Wer Code repariert, darf die Prüfung nicht aufweichen. Ein Hook sperrt Änderungen an Testdateien während einer Korrektur (siehe `hooks.md`); sonst prüft der Review jede Änderung an einem Test.
@@ -45,7 +45,7 @@ Schlägt ein Test fehl, wird der Code geändert, nicht der Test.
 |---|---|
 | Was wird erzwungen? | Prüfung vor „fertig" und die Sperre für Testdateien bei Korrekturen, als Hooks, wo es garantiert sein soll |
 | Was ist der Beleg? | die wörtliche Ausgabe von Test und Build, die Claude gezeigt hat; der Beleg kommt aus den Werkzeugen |
-| Wo steht er? | im Transkript der Session; ab 0.3 auch im Check des PR |
+| Wo steht er? | im Transkript der Session; ab 0.4 auch im Check des PR |
 | Wer nimmt ab? | der Code Owner im Review, der sich auf Absicht und Risiko konzentrieren kann |
 
 (S. 33)
@@ -54,7 +54,7 @@ Schlägt ein Test fehl, wird der Code geändert, nicht der Test.
 
 | Indikator | Was | Woher |
 |---|---|---|
-| früh | Anteil der Agenten-Änderungen, die die CI im ersten Lauf bestehen | CI (ab 0.3); in 0.2 ersatzweise: Commits `build:`/`fix:` ohne Nacharbeit |
-| spät | Review-Zeit je PR; Anteil der Änderungen, die im Betrieb scheitern | PR-Daten, Incident-Tracker (ab 0.3) |
+| früh | Anteil der Agenten-Änderungen, die die CI im ersten Lauf bestehen | CI (ab 0.4); in 0.3 ersatzweise: Commits `build:`/`fix:` ohne Nacharbeit |
+| spät | Review-Zeit je PR; Anteil der Änderungen, die im Betrieb scheitern | PR-Daten, Incident-Tracker (ab 0.4) |
 
 (S. 33)
