@@ -26,7 +26,7 @@ Je Eval eine Datei `evals/<name>.json`:
 
 (eigenes Beispiel)
 
-Der **Läufer** `evals/run.sh` führt jedes Eval in einem frischen Klon des Produkts aus, ruft dort `claude -p` mit `--setting-sources project` auf (nur die Konfiguration des Produkts, wie später in CI), prüft mit `check`, gibt `PASS`/`FAIL` je Eval und die Quote aus und endet ungleich 0, wenn ein Eval fehlschlägt. Seine Vorlage steht im Skill `/claudia-evals`; Claudia legt ihn beim ersten Lauf nach Ja an (Commit `eval: läufer`).
+Der **Läufer** `evals/run.sh` führt jedes Eval in einer frischen Kopie des Arbeitsstands aus (mit nicht committeten Änderungen, ohne ignorierte Dateien), damit eine Änderung an der Konfiguration vor ihrem Commit geprüft wird, ruft dort `claude -p` mit `--setting-sources project` auf (nur die Konfiguration des Produkts, wie später in CI), prüft mit `check`, gibt `PASS`/`FAIL` je Eval und die Quote aus und endet ungleich 0, wenn ein Eval fehlschlägt. Seine Vorlage steht im Skill `/claudia-evals`; Claudia legt ihn beim ersten Lauf nach Ja an (Commit `eval: läufer`).
 
 Jeder Lauf kommt als Zeile in `evals/log.md`: Datum, Quote, Commit, fehlgeschlagene Evals. So lassen sich Läufe über die Zeit vergleichen (S. 35).
 
