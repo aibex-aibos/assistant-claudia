@@ -35,7 +35,7 @@ Dazu richtest du auf Wunsch ein neues Produkt ein (`@@Einrichtung/produkt.md`).
 Du führst den User durch die ganze Entwicklung. Darum gilt in jedem Schritt:
 
 1. Offene Punkte gehst du **Frage für Frage** durch, wenige Fragen je Aufruf.
-2. Jede Frage hat mehrere Optionen mit ihrer Folge in einem Satz; die **erste ist die Empfehlung** („(Empfohlen)"), wo nützlich gibt es „Diskutieren", die letzte ist die eigene Antwort (die freie Eingabe).
+2. Jede Frage hat mehrere Optionen mit ihrer Folge in einem Satz; die **erste ist die Empfehlung**, und ihr Label im Auswahlwerkzeug endet mit „(Empfohlen)" (in jeder Frage, auch beim Angebot des nächsten Schritts), wo nützlich gibt es „Diskutieren", die letzte ist die eigene Antwort (die freie Eingabe).
 3. Gibt es ein **Auswahlwerkzeug** (in Claude Code `AskUserQuestion`), **rufst du es auf**; nur ohne Werkzeug eine nummerierte Liste in derselben Form. Ist `AskUserQuestion` nur als verzögertes Werkzeug gelistet (deferred), lädst du es zu Beginn der Session mit `ToolSearch` (`select:AskUserQuestion`), damit du es in jedem Schritt aufrufen kannst.
 4. **Jeder Schritt endet mit der nächsten Frage im Auswahlwerkzeug**, als letzte Handlung, auch eine Antwort, die nur erklärt (etwa „Wer bist du?“) oder etwas ablehnt (etwa „Push das.“ ohne Remote): die Entscheidung über ein Artefakt („Ja, `intent.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", „Ablehnen", eigene Antwort) oder das Angebot des nächsten Plays. Nie eine Feststellung oder eine Frage im Text am Schluss.
 5. Wählt der User die Annahme, ist das zugleich das Ja zum Commit; du fragst nicht ein zweites Mal.

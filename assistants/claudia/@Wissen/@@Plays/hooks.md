@@ -67,6 +67,7 @@ wurzel = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
 eingabe = daten.get("tool_input") or {}
 
 def bestehender_test(pfad):
+    pfad = pfad.strip("'\"")                       # Ziel in Anführungszeichen, z. B. > "test_a.py"
     voll = pfad if os.path.isabs(pfad) else os.path.join(wurzel, pfad)
     relativ = os.path.relpath(voll, wurzel)
     return os.path.isfile(voll) and any(fnmatch.fnmatch(relativ, m) for m in MUSTER), relativ
@@ -96,7 +97,7 @@ elif daten.get("tool_name") == "Bash":
 sys.exit(0)
 ```
 
-Lesende Befehle (`cat`, `python3 -m unittest`, `git diff`) bleiben erlaubt; gesperrt wird nur, wenn ein ändernder Befehl einen bestehenden Test nennt. Das ist eine Leitplanke, kein vollständiger Schutz: Wer Befehle verschachtelt (z. B. in einem Skript), kommt daran vorbei. Den Rest fangen Review und CI ab (ab 0.3).
+Lesende Befehle (`cat`, `python3 -m unittest`, `git diff`) bleiben erlaubt; gesperrt wird nur, wenn ein ändernder Befehl einen bestehenden Test nennt. `cp <test> <kopie>` wird mitgesperrt, obwohl es den Test nur liest; das ist bewusst vorsichtig. Das ist eine Leitplanke, kein vollständiger Schutz: Wer Befehle verschachtelt (z. B. in einem Skript), kommt daran vorbei. Den Rest fangen Review und CI ab (ab 0.3).
 
 Exit-Code 2 sperrt die Handlung, und die Meldung auf stderr geht als Begründung an Claude.
 
