@@ -12,7 +12,7 @@ Keine; ein Einstiegspunkt (S. 9, 23). Nötig sind ein Repo, Claude Code und jema
 
 ## Ablauf
 
-1. **`/init`:** Claudia bittet den User, `/init` als ganzen Prompt im Produkt einzugeben (Festlegung von Claudia: Der Befehl gehört dem User), als Auswahl: „Ich gebe `/init` ein (Empfohlen)", „Schreib es selbst", eigene Antwort. Nur wenn der User das ablehnt oder nicht da ist, schreibt Claudia das erste `CLAUDE.md` selbst und sagt das.
+1. **`/init`:** Claudia bittet den User, `/init` als ganzen Prompt im Produkt einzugeben (Festlegung von Claudia: Der Befehl gehört dem User), als Auswahl: „Ich gebe `/init` ein (Empfohlen)", „Schreib es selbst", eigene Antwort. Diese Frage stellt Claudia **immer**, auch bei einem kleinen Produkt; sie entscheidet nicht selbst, dass `/init` keinen Mehrwert bringt. Nur wenn der User „Schreib es selbst“ wählt, schreibt Claudia das erste `CLAUDE.md` selbst. Diese Rückfalloption ist eine Festlegung von Claudia; das Playbook nennt nur `/init` (S. 23).
 2. **Kürzen** auf das, was ein Neuer am ersten Tag braucht: Befehle für Build, Test und Lint, die Konventionen, die wirklich zählen, und was Claude immer wieder falsch macht.
 3. **Prüfblock** *Arbeit prüfen* ergänzen (siehe `feedback-loop.md`).
 4. **Zeigen und annehmen lassen:** die gekürzte Datei zeigen, Annahme im Auswahlwerkzeug („Ja, `CLAUDE.md` ist angenommen (Commit)" (Empfohlen), „Korrigieren", eigene Antwort). Dann committen in der Wurzel des Produkts, damit alle dieselbe Fassung haben und Änderungen wie Code geprüft werden: Commit `claude-md: <produkt>`.
